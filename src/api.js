@@ -14,7 +14,8 @@ router.get('/',(req,res)=>{
 router.get('/userData', function (req, res) {
     // let rawdata = fs.readFileSync(path.resolve('./json/data.json'));
     let rawdata = data;
-    res.json(JSON.parse(rawdata));
+    // res.json(JSON.parse(rawdata));
+    res.json(rawdata);
   });
   router.get('/userShips', function (req, res) {
     let rawdata = fs.readFileSync(path.resolve('./json/userships.json'));
@@ -49,7 +50,9 @@ router.get('/userData', function (req, res) {
   router.get('/rewards', function (req, res) {
     // let rawdata = fs.readFileSync(path.resolve('./json/rewards.json'));
     let rawdata = rewards;
-    res.json(JSON.parse(rawdata));
+    // res.json(JSON.parse(rawdata));
+    res.json(rawdata);
+
   });
   router.post('/addRewards', function (req, res) {
     // let rawdata = fs.readFileSync(path.resolve('./json/rewards.json'));
