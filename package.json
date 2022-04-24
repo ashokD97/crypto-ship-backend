@@ -1,27 +1,27 @@
 {
-  "name": "netlify-express",
+  "name": "crypto-ship-backend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "dependencies": {
-    "express": "^4.16.4",
-    "netlify-lambda": "^1.4.3",
-    "serverless-http": "^1.9.1"
-  },
-  "devDependencies": {},
   "scripts": {
-    "start": "NODE_ENV=development ./node_modules/.bin/netlify-lambda serve src",
-    "build": "NODE_ENV=production ./node_modules/.bin/netlify-lambda build src"
+     "start": "netlify-lambda serve src",
+     "build": "netlify-lambda build src"
+
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/owenconti/netlify-express.git"
+    "url": "git+https://github.com/ashokD97/crypto-ship-backend.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/owenconti/netlify-express/issues"
+    "url": "https://github.com/ashokD97/crypto-ship-backend/issues"
   },
-  "homepage": "https://github.com/owenconti/netlify-express#readme"
+  "homepage": "https://github.com/ashokD97/crypto-ship-backend#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "netlify-lambda": "^2.0.15",
+    "serverless-http": "^3.0.1"
+  }
 }
