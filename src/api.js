@@ -4,14 +4,16 @@ const path = require('path');
 const fs= require('fs');
 const app = express();
 const router = express.Router();
-
+let data = {"coins":7155};
+let rewards = {"Ship1":[],"Ship2":[],"Ship3":[],"Ship7":[{"time":1650552554119,"position":"5 th","coins":3,"exp":250},{"time":1650552570126,"position":"1 st","coins":9,"exp":250}]};
 router.get('/',(req,res)=>{
     res.json({
         'hello':'wrlld'
     })
 })
 router.get('/userData', function (req, res) {
-    let rawdata = fs.readFileSync(path.resolve('./json/data.json'));
+    // let rawdata = fs.readFileSync(path.resolve('./json/data.json'));
+    let rawdata = data;
     res.json(JSON.parse(rawdata));
   });
   router.get('/userShips', function (req, res) {
@@ -34,30 +36,34 @@ router.get('/userData', function (req, res) {
       // Checking for errors
       if (err) throw err;
       console.log("Done writing"); // Success
-      let x = JSON.parse(fs.readFileSync(path.resolve('./json/data.json')));
+    //   let x = JSON.parse(fs.readFileSync(path.resolve('./json/data.json')));
+    let x = data;
       x.coins -= 500;
-      fs.writeFile(path.resolve('./json/data.json'), JSON.stringify(x), err => {
-        // Checking for errors
-        if (err) throw err;
-      });
+    //   fs.writeFile(path.resolve('./json/data.json'), JSON.stringify(x), err => {
+    //     if (err) throw err;
+    //   });
+    data = x;
       res.json({});
     });
   });
   router.get('/rewards', function (req, res) {
-    let rawdata = fs.readFileSync(path.resolve('./json/rewards.json'));
+    // let rawdata = fs.readFileSync(path.resolve('./json/rewards.json'));
+    let rawdata = rewards;
     res.json(JSON.parse(rawdata));
   });
   router.post('/addRewards', function (req, res) {
-    let rawdata = fs.readFileSync(path.resolve('./json/rewards.json'));
+    // let rawdata = fs.readFileSync(path.resolve('./json/rewards.json'));
+    let rawdata = rewards;
     let x = JSON.parse(rawdata);
     if (!x[req.body.name]) {
       x[req.body.name] = [];
     }
     x[req.body.name].push(req.body.value);
     deductRum(req.body.name);
-    fs.writeFile(path.resolve('./json/rewards.json'), JSON.stringify(x), err => {
-      if (err) throw err;
-    });
+    // fs.writeFile(path.resolve('./json/rewards.json'), JSON.stringify(x), err => {
+    //   if (err) throw err;
+    // });
+    rewards = x;
     res.json({});
   });
   router.post('/claimRewards', function (req, res) {
@@ -82,21 +88,25 @@ router.get('/userData', function (req, res) {
   
   });
   function claimRewards(name){
-    let rawdata = fs.readFileSync(path.resolve('./json/rewards.json'));
+    // let rawdata = fs.readFileSync(path.resolve('./json/rewards.json'));
+    let rawdata = rewards;
     let x = JSON.parse(rawdata);
     let totalCoins = 0;
     x[name].forEach(element => {
       totalCoins += element.coins;
     });
     x[name] = [];
-    fs.writeFile(path.resolve('./json/rewards.json'), JSON.stringify(x), err => {
-      if (err) throw err;
-    });
-    let y = JSON.parse(fs.readFileSync(path.resolve('./json/data.json')));
+    // fs.writeFile(path.resolve('./json/rewards.json'), JSON.stringify(x), err => {
+    //   if (err) throw err;
+    // });
+    rewards = x;
+    // let y = JSON.parse(fs.readFileSync(path.resolve('./json/data.json')));
+    let y = data;
     y.coins += totalCoins;
-    fs.writeFile(path.resolve('./json/data.json'), JSON.stringify(y), err => {
-      if (err) throw err;
-    });
+    // fs.writeFile(path.resolve('./json/data.json'), JSON.stringify(y), err => {
+    //   if (err) throw err;
+    // });
+    data = y;
   }
   function sellShip(price,ship){
     let x = JSON.parse(fs.readFileSync(path.resolve('./json/sellPrices.json')));
@@ -139,11 +149,13 @@ router.get('/userData', function (req, res) {
       y.forEach(elem => {
         if (elem.name == name) {
           elem.stats.rum = 5;
-          let y = JSON.parse(fs.readFileSync(path.resolve('./json/data.json')));
+        //   let y = JSON.parse(fs.readFileSync(path.resolve('./json/data.json')));
+        let y  = data;
           y.coins -= 3;
-          fs.writeFile(path.resolve('./json/data.json'), JSON.stringify(y), err => {
-            if (err) throw err;
-          });
+        //   fs.writeFile(path.resolve('./json/data.json'), JSON.stringify(y), err => {
+        //     if (err) throw err;
+        //   });
+        data= y;
         }
       })
       fs.writeFile(path.resolve('./json/userships.json'), JSON.stringify(y), err => {
