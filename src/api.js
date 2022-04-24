@@ -4,6 +4,8 @@ const path = require('path');
 const fs= require('fs');
 const app = express();
 const router = express.Router();
+const cors = require('cors');
+app.use(cors());
 let data = {"coins":7155};
 let rewards = {"Ship1":[],"Ship2":[],"Ship3":[],"Ship7":[{"time":1650552554119,"position":"5 th","coins":3,"exp":250},{"time":1650552570126,"position":"1 st","coins":9,"exp":250}]};
 let userShips = [{"name":"Ship1","model":"s001","rarity":"Boat","img":"pship0","stats":{"speed":21,"level":5,"exp":6,"maneuvering":32,"efficiency":22,"rum":1}},{"name":"Ship7","model":"s003","img":"pship1","rarity":"Ship","stats":{"speed":30,"maneuvering":31,"efficiency":32,"rum":3,"level":1,"exp":0}},{"name":"Ship2","model":"s002","img":"pship2","rarity":"Warship","stats":{"speed":26,"level":5,"exp":6,"maneuvering":27,"efficiency":30,"rum":3}},{"name":"Ship3","model":"s003","img":"pship1","rarity":"Ship","stats":{"speed":22,"level":5,"exp":6,"maneuvering":35,"efficiency":29,"rum":5}}];
