@@ -47,7 +47,7 @@ router.get('/userData', function (req, res) {
     userShips =x;
     // fs.writeFile(path.resolve('./json/userships.json'), JSON.stringify(x), err => {
       if (err) throw err;
-      console.log("Done writing"); 
+      // console.log("Done writing"); 
     //   let x = JSON.parse(fs.readFileSync(path.resolve('./json/data.json')));
     let z = data;
       z.coins -= 500;
@@ -67,8 +67,9 @@ router.get('/userData', function (req, res) {
   });
   router.post('/addRewards', function (req, res) {
     // let rawdata = fs.readFileSync(path.resolve('./json/rewards.json'));
-    let rawdata = rewards;
-    let x = JSON.parse(rawdata);
+    // let rawdata = rewards;
+    // let x = JSON.parse(rawdata);
+    let x = rewards;
     if (!x[req.body.name]) {
       x[req.body.name] = [];
     }
@@ -97,7 +98,8 @@ router.get('/userData', function (req, res) {
   
   });
   router.get('/getShipPrice', function (req, res) {
-    let rawdata = fs.readFileSync(path.resolve('./json/sellPrices.json'));
+    // let rawdata = fs.readFileSync(path.resolve('./json/sellPrices.json'));
+    let rawdata = sellPrices;
     res.send(rawdata);
   
   });
