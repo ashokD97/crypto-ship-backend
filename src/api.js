@@ -15,7 +15,7 @@ router.get('/userData', function (req, res) {
     // let rawdata = fs.readFileSync(path.resolve('./json/data.json'));
     let rawdata = data;
     // res.json(JSON.parse(rawdata));
-    res.json(rawdata);
+    res.send(rawdata);
   });
   router.get('/userShips', function (req, res) {
     let rawdata = fs.readFileSync(path.resolve('./json/userships.json'));
